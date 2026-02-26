@@ -6,38 +6,76 @@
   <title>Inline Fire Doors - Video Library</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f4f6f9;
+    :root {
+      --brand: #fb511e;
     }
 
-    h1 {
-      color: #0A2A66;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #222;
+    }
+
+    .header {
+      background: var(--brand);
+      padding: 25px 20px;
       text-align: center;
+    }
+
+    .logo {
+      max-width: 220px;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      color: white;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      padding: 25px 20px;
+      max-width: 900px;
+      margin: auto;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
+      padding: 14px;
+      margin-bottom: 25px;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      border: 2px solid #eee;
       font-size: 16px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--brand);
     }
 
     .video-card {
-      background: white;
-      padding: 15px;
-      margin-bottom: 12px;
+      background: #ffffff;
+      padding: 18px;
+      margin-bottom: 15px;
       border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      border-left: 5px solid var(--brand);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: 0.2s ease;
     }
 
     .video-card:hover {
-      background-color: #eef2ff;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .video-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 6px;
     }
 
     .task {
@@ -47,18 +85,27 @@
 
     .loading {
       text-align: center;
+      margin-top: 20px;
+      color: #666;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Inline Fire Doors<br>Video Library</h1>
+  <div class="header">
+    <img src="logo.png" class="logo" alt="Inline Fire Doors Logo">
+    <div class="title">Video Library</div>
+  </div>
 
-  <input type="text" id="search" placeholder="Buscar video..." />
+  <div class="container">
 
-  <div id="videos"></div>
-  <p class="loading" id="loading">Cargando videos...</p>
+    <input type="text" id="search" placeholder="Search video..." />
+
+    <div id="videos"></div>
+    <p class="loading" id="loading">Loading videos...</p>
+
+  </div>
 
   <script>
     const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnEYYHFvEpJmAD2M4eWg8tn3KQ-Zu4xDFt1pLENa-A-aa32e5YSvYSQG0Ql3TCXg/pub?output=csv";
@@ -78,7 +125,7 @@
         const linkIndex = headers.indexOf("link");
 
         if (titleIndex === -1 || linkIndex === -1) {
-          document.getElementById("loading").innerText = "Columnas incorrectas (necesita Title y Link).";
+          document.getElementById("loading").innerText = "Incorrect columns (needs Title and Link).";
           return;
         }
 
@@ -92,7 +139,7 @@
         renderVideos(allVideos);
 
       } catch (error) {
-        document.getElementById("loading").innerText = "Error cargando Google Sheet.";
+        document.getElementById("loading").innerText = "Error loading videos.";
         console.error(error);
       }
     }
@@ -107,7 +154,7 @@
         div.onclick = () => window.open(video.link, "_blank");
 
         div.innerHTML = `
-          <strong>${video.title}</strong>
+          <div class="video-title">${video.title}</div>
           <div class="task">${video.task}</div>
         `;
 
