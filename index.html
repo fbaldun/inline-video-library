@@ -2,157 +2,177 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Inline Fire Doors - Video Library</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inline Fire Doors - Video Library</title>
 
   <style>
+    :root {
+      --brand: #fb511e;
+    }
+
     body {
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
       background: #ffffff;
-      color: #333;
+      color: #222;
     }
 
-    header {
-      background: white;
+    .header {
+      background: var(--brand);
+      padding: 25px 20px;
       text-align: center;
-      padding: 20px 10px;
-      border-bottom: 2px solid #fb511e;
-    }
-
-    header h1 {
-      margin: 10px 0 0 0;
-      color: #fb511e;
-      font-size: 22px;
     }
 
     .logo {
-      width: 180px;
+      max-width: 220px;
       margin-bottom: 10px;
     }
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px;
-      flex-wrap: wrap;
-    }
-
-    .categories button {
-      background: white;
-      border: 2px solid #fb511e;
-      color: #fb511e;
-      padding: 8px 14px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .categories button:hover {
-      background: #fb511e;
+    .title {
       color: white;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
 
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 20px;
+    .container {
+      padding: 25px 20px;
+      max-width: 900px;
+      margin: auto;
     }
 
-    .card {
-      background: white;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      border: 2px solid #eee;
+      font-size: 16px;
       transition: 0.2s;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
+    input:focus {
+      outline: none;
+      border-color: var(--brand);
     }
 
-    .card img {
-      width: 100%;
+    .video-card {
+      background: #ffffff;
+      padding: 18px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      border-left: 5px solid var(--brand);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: 0.2s ease;
     }
 
-    .card-content {
-      padding: 15px;
+    .video-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
 
-    .card-content h3 {
-      margin: 0 0 10px 0;
+    .video-title {
       font-size: 16px;
-    }
-
-    .youtube-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
       font-weight: bold;
-      color: #fb511e;
+      margin-bottom: 6px;
     }
 
-    .youtube-icon {
-      width: 18px;
+    .task {
+      color: #666;
+      font-size: 14px;
     }
 
-    footer {
+    .loading {
       text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #888;
+      margin-top: 20px;
+      color: #666;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <img src="logo.png" class="logo" />
-  <h1>Video Installation Library</h1>
-</header>
-
-<div class="categories">
-  <button>Installation</button>
-  <button>Maintenance</button>
-  <button>Compliance</button>
-  <button>Hardware</button>
-</div>
-
-<div class="videos">
-
-  <div class="card">
-    <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/0.jpg">
-    <div class="card-content">
-      <h3>Fire Door Installation Guide</h3>
-      <a class="youtube-link" href="https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_1" target="_blank">
-        <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
-        Watch on YouTube
-      </a>
-    </div>
+  <div class="header">
+    <img src="logo.png" class="logo" alt="Inline Fire Doors Logo">
+    <div class="title">Video Library</div>
   </div>
 
-  <div class="card">
-    <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/0.jpg">
-    <div class="card-content">
-      <h3>Correct Door Frame Installation</h3>
-      <a class="youtube-link" href="https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_2" target="_blank">
-        <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
-        Watch on YouTube
-      </a>
-    </div>
+  <div class="container">
+
+    <input type="text" id="search" placeholder="Search video..." />
+
+    <div id="videos"></div>
+    <p class="loading" id="loading">Loading videos...</p>
+
   </div>
 
-</div>
+  <script>
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnEYYHFvEpJmAD2M4eWg8tn3KQ-Zu4xDFt1pLENa-A-aa32e5YSvYSQG0Ql3TCXg/pub?output=csv";
 
-<footer>
-  © 2026 Inline Fire Doors
-</footer>
+    let allVideos = [];
+
+    async function loadSheet() {
+      try {
+        const response = await fetch(CSV_URL);
+        const text = await response.text();
+
+        const rows = text.split("\n").map(row => row.split(","));
+        const headers = rows[0].map(h => h.trim().toLowerCase());
+
+        const titleIndex = headers.indexOf("title");
+        const taskIndex = headers.indexOf("task");
+        const linkIndex = headers.indexOf("link");
+
+        if (titleIndex === -1 || linkIndex === -1) {
+          document.getElementById("loading").innerText = "Incorrect columns (needs Title and Link).";
+          return;
+        }
+
+        allVideos = rows.slice(1).map(row => ({
+          title: row[titleIndex],
+          task: row[taskIndex] || "",
+          link: row[linkIndex]
+        })).filter(v => v.title && v.link);
+
+        document.getElementById("loading").style.display = "none";
+        renderVideos(allVideos);
+
+      } catch (error) {
+        document.getElementById("loading").innerText = "Error loading videos.";
+        console.error(error);
+      }
+    }
+
+    function renderVideos(videos) {
+      const container = document.getElementById("videos");
+      container.innerHTML = "";
+
+      videos.forEach(video => {
+        const div = document.createElement("div");
+        div.className = "video-card";
+        div.onclick = () => window.open(video.link, "_blank");
+
+        div.innerHTML = `
+          <div class="video-title">${video.title}</div>
+          <div class="task">${video.task}</div>
+        `;
+
+        container.appendChild(div);
+      });
+    }
+
+    document.getElementById("search").addEventListener("input", function() {
+      const value = this.value.toLowerCase();
+      const filtered = allVideos.filter(v =>
+        v.title.toLowerCase().includes(value) ||
+        v.task.toLowerCase().includes(value)
+      );
+      renderVideos(filtered);
+    });
+
+    loadSheet();
+  </script>
 
 </body>
 </html>
