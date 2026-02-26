@@ -13,6 +13,7 @@
       color: #333;
     }
 
+    /* HEADER (NO TOCAR) */
     header {
       background: white;
       text-align: center;
@@ -31,6 +32,7 @@
       margin-bottom: 10px;
     }
 
+    /* CATEGORIES */
     .categories {
       display: flex;
       justify-content: center;
@@ -55,50 +57,51 @@
       color: white;
     }
 
+    /* VIDEOS GRID */
     .videos {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
       padding: 20px;
     }
 
+    /* TARJETAS COMPACTAS */
     .card {
       background: white;
       border: 1px solid #eee;
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       transition: 0.2s;
+      cursor: pointer;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
 
-    .card img {
+    .card img.thumbnail {
       width: 100%;
+      display: block;
     }
 
     .card-content {
-      padding: 15px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .card-content h3 {
-      margin: 0 0 10px 0;
-      font-size: 16px;
-    }
-
-    .youtube-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      color: #fb511e;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      flex: 1;
     }
 
     .youtube-icon {
       width: 18px;
+      margin-left: 8px;
     }
 
     footer {
@@ -126,25 +129,21 @@
 
 <div class="videos">
 
-  <div class="card">
-    <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/0.jpg">
+  <!-- VIDEO 1 -->
+  <div class="card" onclick="window.open('https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_1','_blank')">
+    <img class="thumbnail" src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/hqdefault.jpg">
     <div class="card-content">
       <h3>Fire Door Installation Guide</h3>
-      <a class="youtube-link" href="https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_1" target="_blank">
-        <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
-        Watch on YouTube
-      </a>
+      <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
     </div>
   </div>
 
-  <div class="card">
-    <img src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/0.jpg">
+  <!-- VIDEO 2 -->
+  <div class="card" onclick="window.open('https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_2','_blank')">
+    <img class="thumbnail" src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/hqdefault.jpg">
     <div class="card-content">
       <h3>Correct Door Frame Installation</h3>
-      <a class="youtube-link" href="https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_2" target="_blank">
-        <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
-        Watch on YouTube
-      </a>
+      <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
     </div>
   </div>
 
