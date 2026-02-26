@@ -1,157 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Inline Fire Doors - Video Library</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training Platform</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #333;
+<style>
+    :root {
+        --primary: #fb511e;
     }
 
-    /* HEADER (NO TOCAR) */
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ffffff;
+    }
+
+    /* ===== HEADER ===== */
     header {
-      background: white;
-      text-align: center;
-      padding: 20px 10px;
-      border-bottom: 2px solid #fb511e;
+        background-color: white;
+        padding: 20px 0;
+        text-align: center;
+        border-bottom: 2px solid var(--primary);
     }
 
     header h1 {
-      margin: 10px 0 0 0;
-      color: #fb511e;
-      font-size: 22px;
+        margin: 0;
+        color: var(--primary);
+        font-weight: 800;
+        letter-spacing: 1px;
     }
 
-    .logo {
-      width: 180px;
-      margin-bottom: 10px;
-    }
-
-    /* CATEGORIES */
+    /* ===== CATEGORÍAS ===== */
     .categories {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px;
-      flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+        flex-wrap: wrap;
     }
 
-    .categories button {
-      background: white;
-      border: 2px solid #fb511e;
-      color: #fb511e;
-      padding: 8px 14px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.2s;
+    .category-btn {
+        padding: 8px 16px;
+        border: 1px solid var(--primary);
+        background-color: white;
+        color: var(--primary);
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
     }
 
-    .categories button:hover {
-      background: #fb511e;
-      color: white;
+    .category-btn:hover {
+        background-color: var(--primary);
+        color: white;
     }
 
-    /* VIDEOS GRID */
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      padding: 20px;
+    /* ===== TARJETAS ===== */
+    .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
     }
 
-    /* TARJETAS COMPACTAS */
     .card {
-      background: white;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      transition: 0.2s;
-      cursor: pointer;
+        background-color: white;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    .card:hover {
-      transform: translateY(-3px);
+    .card h3 {
+        margin: 0 0 8px 0;
+        color: var(--primary);
     }
 
-    .card img.thumbnail {
-      width: 100%;
-      display: block;
+    .card p {
+        margin: 0;
+        color: #444;
+        font-size: 14px;
     }
 
-    .card-content {
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .card-content h3 {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 600;
-      flex: 1;
-    }
-
-    .youtube-icon {
-      width: 18px;
-      margin-left: 8px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #888;
-    }
-  </style>
+</style>
 </head>
-
 <body>
 
 <header>
-  <img src="logo.png" class="logo" />
-  <h1>Video Installation Library</h1>
+    <h1>TRAINING PLATFORM</h1>
 </header>
 
 <div class="categories">
-  <button>Installation</button>
-  <button>Maintenance</button>
-  <button>Compliance</button>
-  <button>Hardware</button>
+    <button class="category-btn">Strength</button>
+    <button class="category-btn">Conditioning</button>
+    <button class="category-btn">Mobility</button>
+    <button class="category-btn">Skills</button>
 </div>
 
-<div class="videos">
+<div class="container">
 
-  <!-- VIDEO 1 -->
-  <div class="card" onclick="window.open('https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_1','_blank')">
-    <img class="thumbnail" src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_1/hqdefault.jpg">
-    <div class="card-content">
-      <h3>Fire Door Installation Guide</h3>
-      <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
+    <div class="card">
+        <h3>Back Squat</h3>
+        <p>5x5 building strength</p>
     </div>
-  </div>
 
-  <!-- VIDEO 2 -->
-  <div class="card" onclick="window.open('https://youtube.com/watch?v=YOUTUBE_VIDEO_ID_2','_blank')">
-    <img class="thumbnail" src="https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_2/hqdefault.jpg">
-    <div class="card-content">
-      <h3>Correct Door Frame Installation</h3>
-      <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/9e/YouTube_Logo_%282013-2017%29.svg">
+    <div class="card">
+        <h3>Deadlift</h3>
+        <p>Heavy triples focus</p>
     </div>
-  </div>
+
+    <div class="card">
+        <h3>Metcon</h3>
+        <p>12 min AMRAP</p>
+    </div>
+
+    <div class="card">
+        <h3>Core</h3>
+        <p>Accessory + stability work</p>
+    </div>
 
 </div>
-
-<footer>
-  © 2026 Inline Fire Doors
-</footer>
 
 </body>
 </html>
